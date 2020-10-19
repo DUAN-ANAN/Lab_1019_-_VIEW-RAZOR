@@ -1,0 +1,17 @@
+﻿
+
+
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Name = "2019/10/19 - Home Test.";
+    ViewBag.Info = "練習使用 ViewBag . ";
+}
+
+<h2>Index - @ViewBag.Info</h2>
+
+<p>Hello from our View Template!</p>
+@{
+    <p>顯示 Controller</p>
+    <h1>@ViewContext.RouteData.Values["controller"]</h1>
+}

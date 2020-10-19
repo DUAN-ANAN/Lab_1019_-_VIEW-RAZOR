@@ -1,0 +1,124 @@
+﻿
+<h1>Razor語法的練習</h1>
+<h2>1. 如何宣告</h2>
+@{
+    var a = "Apple";
+    int x = 10;
+    int y = 5;
+    int z = x + y;
+
+}
+<p>顯示結果：a= @a z=@z </p>
+
+<h2>2. 如何宣告 - ViewBag 的使用</h2>
+@{
+    ViewBag.apple = "我是鯊魚";
+    ViewBag.bee = "好大喔！";
+}
+<p>@ViewBag.apple @ViewBag.bee</p>
+
+<h2>3. 換行字元的避開方法</h2>
+@{
+    string temp1 = "C:\temp";
+    string temp2 = "C:\\temp";
+    string temp3 = @"C:\temp";
+}
+<p>@temp1</p>
+<p>@temp2</p>
+<p>@temp3</p>
+
+<h2>4. 物件屬性</h2>
+<table border="1">
+    <tr>
+        <td>Requested URL</td>
+        <td>Relative Path</td>
+        <td>Full Path</td>
+        <td>HTTP Request Type</td>
+    </tr>
+    <tr>
+        <td>@Request.Url</td>
+        <td>@Request.FilePath</td>
+        <td>@Request.MapPath(Request.FilePath)</td>
+        <td>@Request.RequestType</td>
+    </tr>
+</table>
+
+<h2>5. 判斷 / 決策 </h2>
+<h4>題目：如果是星期一，就顯示bluemonday</h4>
+@{
+    string week = "";
+    if (DateTime.Now.DayOfWeek == DayOfWeek.Monday)
+    {
+        week = "bluemonday";
+    }
+    else
+    {
+        week = "keep going !!!";
+    }
+
+    <p>@week</p>
+}
+
+<h2>6. 補充 Razor </h2>
+<h3>迴圈 for -1</h3>
+@{
+    for (int i = 0; i < 5; i++)
+    {
+        <p>i</p>
+    }
+}
+
+<h3>迴圈 for -2</h3>
+@{
+    for (int i = 0; i < 5; i++)
+    {
+        <p>@i</p>
+    }
+}
+
+<h3>巡覽 foreach -1</h3>
+@{
+    int[] FEdemo1 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    foreach (int item in FEdemo1)
+    {
+        <p>int[item]</p>
+    }
+}
+
+<h3>巡覽 foreach -2</h3>
+@{
+    int[] FEdemo2 = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    foreach (int item in FEdemo2)
+    {
+        <p>@item</p>
+    }
+
+}
+
+<h3>使用 html 標籤</h3>
+@{ 
+    string txt_1 = "<b>Apple</b>";
+    string txt2 = "<b>Apple</b>";
+}
+@txt_1
+<br />
+@Html.Raw(txt2)
+
+<h3>使用 function 要加"s"</h3>
+
+@functions{
+
+    public string myFun(string name)
+    {
+        return "Hello"+" " + name;
+    }
+
+    public int math(int a,int b)
+    {
+        return (a + b) * 10;
+    }
+}
+
+@myFun("andy")
+<br />
+@math(5,6)

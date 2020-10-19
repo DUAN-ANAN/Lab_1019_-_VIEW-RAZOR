@@ -1,0 +1,12 @@
+﻿
+
+@{ 
+    if (ViewContext.RouteData.Values["controller"].ToString() == "Hello")
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/_LayoutApple.cshtml";
+    }
+}
